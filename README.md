@@ -1,22 +1,19 @@
 ![image](https://user-images.githubusercontent.com/20924663/108747275-2afef300-7535-11eb-965b-3e24f7cf9c27.png)
 
-A visual and more graphical search engine for the surfing the internet
+A sequence of questions for an AI algorithm to examine user behaviour on the enregy allocations.
 
-The Official Netxplora Repository.
+The Official Web AI Internship Repository.
 
 Under 2021 Copyright Laws & other.
 
 ---
 
-**Developer Instructions,**
+**Developer Instructions**
 
 clone this repository,
 inside the folder of the cloned repository run ```npm install```
 followed by ```npm run dev``` to deploy the development enviroment
 then navigate to your browser and open ```http://localhost:3000/```
-
-❗ WE WORK ON THE ```DEV``` branch,
-meaning all new written code should be pushed to the ```dev``` branch, which can be accessed to through the terminal and typing ```git checkout dev```.
 
 ---
 

@@ -5,59 +5,31 @@ COMPONENT SCRIPT
 -->
 
 <script>
-	import { darkmode } from '../store/store_darkmode.js';
-	import { visitedLinks } from '../store/store_userVisitedLink.js';
+    import { selectedTimeSlots } from '../store/store_userSelectedTimeSlots.js';
 
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	
-    // EXTERNAL COMPONENTS,
 	import Nav from '../routes/_components/Nav.svelte';
 	import Footer from './_components/Footer.svelte';
-
-	// ===
-	// Local Variables,
-	// ===
 
 	export let segment;
 	
 	// loading the data in the localStorage(), in the broswer,
 	if (process.browser) {
-
 		// Before we can use set on darkmode & linkArray we need to call the
-		// useLocalStorage() doing this at the _layout file makes
+		// .useLocalStorage() doing this at the _layout file makes
 		// all routes and components exposed to this so we can
-		// import the state and call set anywhere like Btn.svelte
-		darkmode.useLocalStorage();
-		visitedLinks.useLocalStorage();
+		// import the state and call set anywhere like in a component such as: Btn.svelte;
+		selectedTimeSlots.useLocalStorage();
 
-		// Log it to make sure it works client side, (browser)
-		// console.log(localStorage.getItem('netxplora-darkmode-value'));
-		// console.log(localStorage.getItem('netxplora-visited-links'));
+		// Log it to make sure it works client side, (browser);
+		// console.log(localStorage.getItem('website-ai-user-selected-options')); // ✅ working upons loading the browser;
 
-		// solution to the 404 JSON Err, .localStorage() not found
+		// solution to the 404 JSON Err, .localStorage() not found,
+		// uncomment the bottom line to reset the localstorage variables;
 		// localStorage.clear();
 	}	
-
-	// ===
-	// COMPONENT METHODS,
-	// ===
-	  
-	/**
-	 * Function, [WORKING]
-	 * ----
-	 * Desc: to check for the darkmode colors of the website,
-	 * and the .localStorage()
-	*/
-    onMount(() => {
-        if ($darkmode === true) {
-            // console.log('Setting Dark-mode', $darkmode)
-            document.body.classList.add('dark-mode');
-        } else {
-            // console.log('Setting Light-mode', $darkmode)
-            document.body.classList.remove('dark-mode');
-        }
-	});
 </script>
 
 <!--
@@ -93,7 +65,7 @@ MOBILE FIRST,
 		font-family: 'Exo 2', sans-serif;
 	}
 	main {
-		padding: 25px 25px 75px 25px;
+		padding: 41px 81px;
 		position: relative;
 
 		/* height: 100vh; */
@@ -108,7 +80,7 @@ MOBILE FIRST,
     
     @media only screen and (min-width: 1024px) {
         main {
-			padding: 25px 25px 150px 25px;
+			padding: 41px 81px;
         }
     }
 </style>

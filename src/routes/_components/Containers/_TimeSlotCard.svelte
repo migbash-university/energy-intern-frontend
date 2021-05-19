@@ -7,9 +7,28 @@ COMPONENT SCRIPT
 <script>
     import { fade } from "svelte/transition";
 
+    import { project_config } from 'project_config.js'
+    import { selectedTimeSlots } from '../../../store/store_userSelectedTimeSlots.js';
+
     export let time_data;
 
     let selected = false;
+
+    /**
+     * Function SvelteJs Reactivity method:
+     * ---
+     * Desc:
+     * Checks if 'this' card compnent has already been selected in the past and assigns it,
+     * the 'selected' boolean option to 'true'
+     * ---
+     * Returns:
+     * NaN
+    */
+    $: {
+        if ($selectedTimeSlots.selectedTimeSlots.includes(time_data.time)) {
+            selected = true;
+        }
+    }
 
     /**
      * Function | Method
@@ -22,7 +41,17 @@ COMPONENT SCRIPT
      * NaN
     */
     function selectTimeSlot() {
-        selected = !selected;
+        if ($selectedTimeSlots.selectedTimeSlots.length < project_config[0].timeSlotsMax && !$selectedTimeSlots.selectedTimeSlots.includes(time_data.time) ) {
+            selected = !selected;
+            //TODO: Add the ability to select and add a new userTimeSlot selction to the userObject Selection;
+            selectedTimeSlots.setSelectedTimeSlots(time_data.time);
+        } else if (selected == true) {
+            selected = !selected;
+            // TODO: Unselect from the localStorage & svelteJs Store;
+            selectedTimeSlots.removeSelectedTimeSlot(time_data.time);
+        } else {
+            alert("You have already selected the maximum slots allowed.")
+        }
     }
 </script>
 
@@ -53,7 +82,7 @@ COMPONENT CSS
 
 <style>
     .time-slot-card {
-        width: 241px;
+        max-width: 241px;
         height: 266px;
 
         cursor: pointer;
