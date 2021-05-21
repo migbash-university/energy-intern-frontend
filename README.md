@@ -17,6 +17,10 @@ then navigate to your browser and open ```http://localhost:3000/```
 
 ---
 
+**How it Works?**
+
+Configure the project to your necessary parameters using the ```.project_config.js``` file inside ```src/node_modules/...``` folder:
+
 Alternative Navbar Checkpoint Roadmap -> using simple images and the correct div allocations,
 
 ```

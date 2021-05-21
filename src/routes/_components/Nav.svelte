@@ -59,7 +59,7 @@ COMPONENT HTML
 		
 		<!-- choose-preferred-time-slot circle, -->
 		<a rel=prefetch href="/choose-preferred-time-slots">
-			{#if selected}
+			{#if segment === 'choose-preferred-time-slots'}
 				<circle in:fade="{{ duration: 350 }}" cx="62.5" cy="31.5" r="29" fill="#D6D6D6" stroke="#1C88EC" stroke-width="5"/>
 			{:else}
 				<g in:fade="{{ duration: 350 }}" opacity="0.5">

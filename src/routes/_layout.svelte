@@ -15,7 +15,7 @@ COMPONENT SCRIPT
 
 	export let segment;
 	
-	// loading the data in the localStorage(), in the broswer,
+	// loading the data in the localStorage() data, in the broswer loading section,
 	if (process.browser) {
 		// Before we can use set on darkmode & linkArray we need to call the
 		// .useLocalStorage() doing this at the _layout file makes

@@ -42,7 +42,7 @@ function createLocalStorage(key) {
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
          * Desc:
-         * Set user options selection for the time Options,
+         * Set user options selection for the time slots,
          * ---
          * Returns:
          * NaN
