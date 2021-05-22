@@ -20,6 +20,7 @@ COMPONENT SCRIPT
 
     /**
      * Method - Function;
+     * [WORKING 🏃‍♀✅]
      * ---
      * Desc:
      * Allows for the tracking of the slider navigation and view order,
@@ -55,6 +56,33 @@ COMPONENT SCRIPT
     }
 
     let numberOfSlides;
+    let timeSlotAmount;
+
+    /**
+     * Method - Function;
+     * [WORKING 🏃‍♀✅]
+     * ---
+     * Desc:
+     * Allows for the tracking and updating of the slider values on the slideshow of card timeslots
+     * with the clicking of the dots;
+     * ---
+     * Returns:
+     * NaN
+     * 
+     * @param sliderDot_Pos
+    */
+    function updateSliderValuesSlideDot(sliderDot_Pos) {
+        slideNum = sliderDot_Pos // , as it can be of value 0;
+
+        transition = false
+        setTimeout(() => {
+            transition = true
+        }, 450)
+
+        // update the slide_a and slide_b to show the correct segment of data slots;
+        slide_a = slideNum * 6
+        slide_b = slide_a + 6
+    }
 
     /**
      * SvelteJs Reactiviy Method,
@@ -70,7 +98,7 @@ COMPONENT SCRIPT
         // console.log($selectedTimeSlots)
         // calcualte the proportion of slides to other information;
 
-        let timeSlotAmount = time_slot_data.length;     // get the total amount of timeslots;
+        timeSlotAmount = time_slot_data.length;         // get the total amount of timeslots;
 
         numberOfSlides = timeSlotAmount / 6;            // allocate the number of sldies and number of slide dots;
 
@@ -89,20 +117,6 @@ COMPONENT SCRIPT
     }
 
 </script>
-
-<!--
-=============
-COMPONENT SVELTE STUFF 
-=============
--->
-
-<svelte:head>
-	<title> AI Website Energy MVP </title>
-    <meta name="title" content="AI Website Energy MVP">
-    <meta name="description" content="AI Website Energy MVP">
-	<meta name="keywords" content="energy, AI, allocation, selfish-agent, social-agent">
-	<meta name="author" content="Miguel Bacharov">
-</svelte:head>
 
 <!--
 =============
@@ -153,7 +167,7 @@ COMPONENT HTML
     <div>
         
         {#each {length:numberOfSlides} as _, i}
-            <span class="dot" on:click={() => slideNum = i} class:dot_active="{slideNum == i}"></span>
+            <span class="dot" on:click={() => updateSliderValuesSlideDot(i)} class:dot_active="{slideNum == i}"></span>
         {/each}
         <span class='counter-container'>{slideNum + 1}/{numberOfSlides}</span>
     </div>

@@ -94,15 +94,20 @@ COMPONENT CSS
         overflow: hidden;
 
         background-color: #00AFEF;
-        color: white !important;
         border-radius: 10px;
         transition: all ease 0.3s;
+
+        display: grid;
+        align-content: center;
     } .time-slot-card:hover {
         box-shadow: 0 0 10px #000000;
         background-color: white;
-        color: black;
     } .time-slot-card img {
         width: 50%;
+    } .time-slot-card h3 {
+        color: white !important;
+    } .time-slot-card:hover h3 {
+        color: #000000 !important;
     }
 
     .select-ui-icon {

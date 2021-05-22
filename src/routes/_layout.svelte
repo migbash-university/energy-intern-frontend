@@ -34,6 +34,20 @@ COMPONENT SCRIPT
 
 <!--
 =============
+COMPONENT SVELTE STUFF 
+=============
+-->
+
+<svelte:head>
+	<title> AI Website Energy MVP </title>
+    <meta name="title" content="AI Website Energy MVP">
+    <meta name="description" content="AI Website Energy MVP">
+	<meta name="keywords" content="energy, AI, allocation, selfish-agent, social-agent">
+	<meta name="author" content="Miguel Bacharov">
+</svelte:head>
+
+<!--
+=============
 COMPONENT HTML 
 =============
 -->

@@ -49,7 +49,7 @@ function createLocalStorage(key) {
          * @param {*} timeSlot_Value 
         */
         setSelectedTimeSlots: (timeSlot_Value) => {
-            // Add new data to localStorage Array,
+            // Add new data to .localStorage() Array,
             userObjectOptions.selectedTimeSlots.push(timeSlot_Value);
             console.log(userObjectOptions);
 
