@@ -52,7 +52,7 @@ COMPONENT HTML
 =============
 -->
 
-<main in:fade out:fade>
+<main in:fade>
 	<Nav {segment}/>
 	<slot></slot>
 </main>

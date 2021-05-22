@@ -115,14 +115,15 @@ COMPONENT SCRIPT
             proceed = true;
         }
     }
-
 </script>
+
 
 <!--
 =============
 COMPONENT HTML 
 =============
 -->
+
 
 <!-- page-section-info-actions -->
 <div style='margin-bottom: 50px;'>
@@ -185,6 +186,7 @@ COMPONENT HTML
     </a>
 </div>
 
+
 <!--
 =============
 COMPONENT CSS
@@ -192,6 +194,8 @@ COMPONENT CSS
 - MOBILE FIRST DESIGN
 =============
 -->
+
+
 <style>
     #grid-time-slots-container {
         display: grid;

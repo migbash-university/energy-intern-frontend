@@ -61,7 +61,7 @@ COMPONENT HTML
 =============
 -->
 
-<div transition:fade class='time-slot-card' on:click="{() => selectTimeSlot()}">
+<div in:fade class='time-slot-card' on:click="{() => selectTimeSlot()}">
     <!-- selected-icon container -->
     {#if selected}
         <img in:fade="{{ duration: 250 }}" class='select-ui-icon' src="./assets/svg/selected-card-icon.svg" alt="selected-icon">
