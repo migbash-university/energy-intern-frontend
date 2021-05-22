@@ -74,11 +74,13 @@ function createLocalStorage(key) {
             // Get the existing data
             // reset the writable to the localStorage if localStorage already exists,
             var existing = localStorage.getItem(key);
-            // console.log(existing); // testing, - "user-object"
+            console.log(existing); // testing, - "user-object"
 
             // If no existing data, create an array
             // Otherwise, convert the localStorage string to an array
             existing = existing ? JSON.parse(existing) : userObjectOptions;
+
+            userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
             
             // add the .localStorage() data to the svelteJs store for enabling of the reactiviy,
             set(existing);

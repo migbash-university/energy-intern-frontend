@@ -138,6 +138,7 @@ COMPONENT HTML
     </div>
 </div>
 
+
 <!-- page-section-card-grid -->
 <div id='grid-time-slots-container'>
     {#if transition}
@@ -165,7 +166,6 @@ COMPONENT HTML
         https://www.w3schools.com/howto/howto_css_circles.asp
     -->
     <div>
-        
         {#each {length:numberOfSlides} as _, i}
             <span class="dot" on:click={() => updateSliderValuesSlideDot(i)} class:dot_active="{slideNum == i}"></span>
         {/each}
