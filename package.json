@@ -7,9 +7,6 @@
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "test": "(npm run build && export PORT=3100 && node __sapper__/build) & cypress run",
     "deploy": "make deploy"
   },
   "dependencies": {

@@ -1,8 +1,12 @@
 import { writable } from 'svelte/store';
 
 const userObjectOptions = {
-    selectedTimeSlots: [],   // user selected cards for the timeslots,
-    selectedAgent: undefined // single agent option,
+    selectedTimeSlots: [],      // user selected cards for the timeslots,
+    selectedAgent: undefined,   // single agent option,
+    pastUserOptionsSelect: {    // past user selected Options in the Previous Run of Answers,
+        pastSelectedTimeSlots: [],
+        selectedAgent: undefined,   
+    }
 }
 
 function createLocalStorage(key) {
