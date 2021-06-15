@@ -19,7 +19,12 @@ then navigate to your browser and open ```http://localhost:3000/```
 
 **How it Works?**
 
-Configure the project to your necessary parameters using the ```.project_config.js``` file inside ```src/node_modules/...``` folder:
+### Project Configuration:
+
+- ... ```project_config.js``` file inside ```src/utils/``` folder, to adjust for the necessary variables,
+- ... ```timeslots_data.js``` file inside ```src/store/``` folder, to add/remove/modify the exisitng time-slots displayed,
+
+### Alternative Code:
 
 Alternative Navbar Checkpoint Roadmap -> using simple images and the correct div allocations,
 
