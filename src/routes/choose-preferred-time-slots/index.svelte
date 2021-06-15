@@ -7,11 +7,11 @@ COMPONENT SCRIPT
 <script>
     import { fade, slide } from 'svelte/transition';
 
-    import { project_config } from 'project_config.js'
+    import { project_config } from '../../utils/project_config.js'
     import { time_slot_data } from '../../store/timeslots_data.js';
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
-    import TimeSlotCard from '../_components/Containers/_TimeSlotCard.svelte';
+    import TimeSlotCard from '../../components/Containers/_TimeSlotCard.svelte';
 
     let slide_a = 0
     let slide_b = 6

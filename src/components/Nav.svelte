@@ -7,7 +7,7 @@ COMPONENT SCRIPT
 	import { fade } from "svelte/transition";
 	import { goto } from '@sapper/app';
 
-    import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
+    import { selectedTimeSlots } from '../store/store_userSelectedTimeSlots.js';
 
 	import { stores } from '@sapper/app';
 	const { preloading, page, session } = stores();

@@ -7,8 +7,8 @@ COMPONENT SCRIPT
 <script>
     import { fade } from "svelte/transition";
 
-    import { project_config } from 'project_config.js'
-    import { selectedTimeSlots } from '../../../store/store_userSelectedTimeSlots.js';
+    import { project_config } from '../../utils/project_config.js';
+    import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
     export let time_data;
 

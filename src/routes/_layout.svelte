@@ -10,8 +10,7 @@ COMPONENT SCRIPT
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	
-	import Nav from '../routes/_components/Nav.svelte';
-	import Footer from './_components/Footer.svelte';
+	import Nav from '../components/Nav.svelte';
 
 	export let segment;
 	

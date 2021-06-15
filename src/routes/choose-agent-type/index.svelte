@@ -4,7 +4,6 @@ COMPONENT HTML
 =============
 -->
 
-
 <!-- page-section-info-actions -->
 <div style='margin-bottom: 50px;'>
     <h2>Please select your preferred timeslots,</h2>
