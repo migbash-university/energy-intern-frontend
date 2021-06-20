@@ -10,10 +10,10 @@ Under 2021 Copyright Laws & other.
 
 **Developer Instructions**
 
-clone this repository,
-inside the folder of the cloned repository run ```npm install```
-followed by ```npm run dev``` to deploy the development enviroment
-then navigate to your browser and open ```http://localhost:3000/```
+- clone this repository, using ```git clone <this_repo_git_url>```
+- inside the cloned & downloaded repository folder, run ```npm install```
+- followed by ```npm run dev``` to deploy the development enviroment
+- then navigate to your browser and open ```http://localhost:3000/```
 
 ---
 
