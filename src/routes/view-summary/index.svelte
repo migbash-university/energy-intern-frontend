@@ -31,14 +31,18 @@ COMPONENT HTML
         <h2>Your preferred time slots,</h2>
         {#each selectedTimeSlotsbyUserValues as timeSlot}
             <div class='comptact-timeslot-container'>
-                {timeSlot}
+                <p style="
+                    white-space: pre-wrap;     
+                    text-align: center;"
+                    > {timeSlot} </p>
             </div>
         {/each}
     </div>
-
     <div>
         <h2>Preferred agent behaviour,</h2>
-        {$selectedTimeSlots.selectedAgent}
+        <div id='circle-shape'>
+            <p id='agent-sum'>{$selectedTimeSlots.selectedAgent}</p>
+        </div>
     </div>
 </div>
 
@@ -72,26 +76,26 @@ COMPONENT CSS
         height: 266px;
     }
 
-    .counter-container {
-        background-color: #007CEF;
-        padding: 3px;
-        color: #FFFFFF;
-        border-radius: 2.5px;
-        margin-left: 10px;
-    }
-
-    .selected-row-container {
-        display: flex;
-        align-items: center;
-        margin-top: 15px;
-    }
-
     .comptact-timeslot-container {
         height: 76.22px;
         width: 167px;
-
         background-color: #00AFEF;
         color: white;
+        border-radius: 8.5641px;
+        margin: 15px 0;
+    }
+
+    #circle-shape {
+        margin: 15px 0;
+        width: 186px;
+        height: 186px;
+        background: #00AFEF;
+        border-radius: 50%;
+        display: flex;
+    } #agent-sum {
+        text-align: center;
+        height: fit-content;
+        margin: auto;
     }
 
     .sequence-continuation-container {
