@@ -71,7 +71,9 @@ COMPONENT CSS
         grid-auto-flow: column;
         grid-gap: 15px;
         height: 266px;
+        width: fit-content;
         justify-content: start;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .counter-container {
