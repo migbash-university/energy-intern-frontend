@@ -61,7 +61,7 @@ COMPONENT HTML
 =============
 -->
 
-<div in:fade class='time-slot-card' on:click="{() => selectAgentSlot()}">
+<div in:fade class='agent-slot-card' on:click="{() => selectAgentSlot()}">
     <!-- selected-icon container -->
     {#if selected}
         <img in:fade="{{ duration: 250 }}" class='select-ui-icon' src="./assets/svg/selected-card-icon.svg" alt="selected-icon">
@@ -81,32 +81,28 @@ COMPONENT CSS
 -->
 
 <style>
-    .time-slot-card {
+    .agent-slot-card {
         max-width: 241px;
+        width: 100%;
         height: 266px;
-
         cursor: pointer;
         text-align: center;
         text-align: -webkit-center;
-
         position: relative;
-
         overflow: hidden;
-
         background-color: #00AFEF;
         border-radius: 10px;
         transition: all ease 0.3s;
-
         display: grid;
         align-content: center;
-    } .time-slot-card:hover {
+    } .agent-slot-card:hover {
         box-shadow: 0 0 10px #000000;
         background-color: white;
-    } .time-slot-card img {
+    } .agent-slot-card img {
         width: 50%;
-    } .time-slot-card h3 {
+    } .agent-slot-card h3 {
         color: white !important;
-    } .time-slot-card:hover h3 {
+    } .agent-slot-card:hover h3 {
         color: #000000 !important;
     }
 
