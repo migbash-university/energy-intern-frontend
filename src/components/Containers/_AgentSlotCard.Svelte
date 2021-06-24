@@ -44,7 +44,7 @@ COMPONENT SCRIPT
         if ($selectedTimeSlots.selectedAgent.length < project_config[0].agentSlotsMax && !$selectedTimeSlots.selectedAgent.includes(agent_type.name) ) {
             selected = !selected;
             //TODO: Add the ability to select and add a new userTimeSlot selction to the userObject Selection;
-            selectedTimeSlots.setSelectedTimeSlots(agent_type.name);
+            selectedTimeSlots.setSelectedAgentSlots(agent_type.name);
         } else if (selected == true) {
             selected = !selected;
             // TODO: Unselect from the localStorage & svelteJs Store;

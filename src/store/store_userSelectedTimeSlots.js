@@ -99,7 +99,7 @@ function createLocalStorage(key) {
          * NaN
          * @param {*} timeSlot_Value 
         */
-        setSelectedTimeSlots: (agentSlot_value) => {
+        setSelectedAgentSlots: (agentSlot_value) => {
             // Add new data to .localStorage() Array,
             userObjectOptions.selectedAgent.push(agentSlot_value);
             console.log(userObjectOptions);
