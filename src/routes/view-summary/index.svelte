@@ -21,24 +21,12 @@ COMPONENT HTML
 
 <!-- page-section-info-actions -->
 <div style='margin-bottom: 50px;'>
-    <h2>Please select your preferred timeslots,</h2>
-    <div class='selected-row-container'>
-        <img src="./assets/svg/info-icon.svg" alt="info-icon">
-        <p style='color: #007CEF; font-weight: bold; margin-left: 5px;'>- you can select up to 1 type of agent,</p>
-    </div>
-    <!-- counter for the selected time-slot-cards, -->
-    <div class='selected-row-container'>
-        <p>Selected</p>
-        <span class='counter-container'>0/1</span>
-    </div>
+    <h2>You can see the selected options:</h2>
 </div>
 
 
 <!-- page-section-card-grid -->
 <div id='grid-agent-select-container'>
-    <!-- {#each time_slot_data.slice(slide_a, slide_b) as slot_item} -->
-        <!-- <TimeSlotCard time_data={slot_item} /> -->
-    <!-- {/each} -->
     <div>
         <h2>Your preferred time slots,</h2>
         {#each selectedTimeSlotsbyUserValues as timeSlot}
