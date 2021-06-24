@@ -11,6 +11,16 @@ COMPONENT JS
     import { project_config } from '../../utils/project_config.js'
 
     import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
+
+    // Validation Function for the proceeding of the sequence of checkpoints,
+    let proceed = true;
+    $ : {
+        if ($selectedTimeSlots.selectedAgent.length == project_config[0].agentSlotsMax) { 
+            proceed = false;
+        } else {
+            proceed = true;
+        }
+    }
 </script>
 
 
@@ -49,9 +59,8 @@ COMPONENT HTML
     <a rel=prefetch href="/choose-preferred-time-slots">
         <button>Back</button>
     </a>
-
     <a rel=prefetch href="/view-summary">
-        <button>Next</button>
+        <button disabled={proceed}>Next</button>
     </a>
 </div>
 
