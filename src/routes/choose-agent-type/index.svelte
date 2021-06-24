@@ -1,8 +1,23 @@
 <!--
 =============
+COMPONENT JS 
+=============
+-->
+
+
+<script>
+    import { agentType_data } from '../../store/agentType_data.js';
+
+    import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
+</script>
+
+
+<!--
+=============
 COMPONENT HTML 
 =============
 -->
+
 
 <!-- page-section-info-actions -->
 <div style='margin-bottom: 50px;'>
@@ -21,9 +36,9 @@ COMPONENT HTML
 
 <!-- page-section-card-grid -->
 <div id='grid-agent-select-container'>
-    <!-- {#each time_slot_data.slice(slide_a, slide_b) as slot_item} -->
-        <!-- <TimeSlotCard time_data={slot_item} /> -->
-    <!-- {/each} -->
+    {#each agentType_data as agentItem}
+        <AgentSlotCard agent_type={ agentItem } />
+    {/each}
 </div>
 
 
@@ -54,6 +69,7 @@ COMPONENT CSS
         grid-auto-flow: column;
         grid-gap: 15px;
         height: 266px;
+        justify-content: start;
     }
 
     .counter-container {

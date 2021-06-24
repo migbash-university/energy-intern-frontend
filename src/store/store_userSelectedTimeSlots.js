@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 const userObjectOptions = {
     selectedTimeSlots: [],      // user selected cards for the timeslots,
-    selectedAgent: undefined,   // single agent option,
+    selectedAgent: [],          // single agent option,
     pastUserOptionsSelect: {    // past user selected Options in the Previous Run of Answers,
         pastSelectedTimeSlots: [],
         selectedAgent: undefined,   
@@ -67,6 +67,53 @@ function createLocalStorage(key) {
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
+         * Desc:
+         * Remove the target data item of the value of the user timeslot from the
+         * user object array,
+         * ---
+         * Returns:
+         * NaN
+         * @param {*} timeSlot_Value 
+        */
+        removeSelectedAgentSlot: (agentSlot_value) => {
+            // will return ['A', 'C']
+            let new_array = userObjectOptions.selectedAgent.filter(e => e !== agentSlot_value); 
+            console.log(new_array);
+
+            userObjectOptions.selectedAgent = new_array
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set user options selection for the time slots,
+         * ---
+         * Returns:
+         * NaN
+         * @param {*} timeSlot_Value 
+        */
+        setSelectedTimeSlots: (agentSlot_value) => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.selectedAgent.push(agentSlot_value);
+            console.log(userObjectOptions);
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
          * Desc: 
          * Method for rendeing on the start of the page some new data from,
          * the localstorage,
@@ -85,6 +132,7 @@ function createLocalStorage(key) {
             existing = existing ? JSON.parse(existing) : userObjectOptions;
 
             userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
+            userObjectOptions.selectedAgent = existing.selectedAgent
             
             // add the .localStorage() data to the svelteJs store for enabling of the reactiviy,
             set(existing);
