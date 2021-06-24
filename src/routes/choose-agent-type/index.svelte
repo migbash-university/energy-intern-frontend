@@ -7,6 +7,8 @@ COMPONENT JS
 
 <script>
     import { agentType_data } from '../../store/agentType_data.js';
+    import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
+    import { project_config } from '../../utils/project_config.js'
 
     import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
 </script>
@@ -29,7 +31,7 @@ COMPONENT HTML
     <!-- counter for the selected time-slot-cards, -->
     <div class='selected-row-container'>
         <p>Selected</p>
-        <span class='counter-container'>0/1</span>
+        <span class='counter-container'>{$selectedTimeSlots.selectedAgent.length}/{project_config[0].agentSlotsMax}</span>
     </div>
 </div>
 
