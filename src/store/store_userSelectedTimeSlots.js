@@ -7,7 +7,7 @@ const userObjectOptions = {
         pastSelectedTimeSlots: [],
         selectedAgent: [],   
     },
-    attemptNumber: 1,                   // number of runs made by the user on the questionaire / website,
+    attemptNumber: 1,                   // counter - runs made by the user on the questionaire / website,
     userSatisfaction1stRound: [],       // user satisfaction score 1-5 first time seeing their allocation,
     userSatisfaction2ndRound: [],       // user satisfaction score 1-5 & fairness (angry-neutral-happy) 
                                         // after seeing eveyone else's allocation,
