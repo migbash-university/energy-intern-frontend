@@ -1,13 +1,17 @@
 import { writable } from 'svelte/store';
 
 const userObjectOptions = {
-    selectedTimeSlots: [],      // user selected cards for the timeslots,
-    selectedAgent: [],          // single agent option,
-    pastUserOptionsSelect: {    // past user selected Options in the Previous Run of Answers,
+    selectedTimeSlots: [],              // user selected cards for the timeslots,
+    selectedAgent: [],                  // single agent option,
+    pastUserOptionsSelect: {            // past user selected Options in the Previous Run of Answers,
         pastSelectedTimeSlots: [],
-        selectedAgent: undefined,   
+        selectedAgent: [],   
     },
-    attemptNumber: 1,           // number of runs made by the user on the questionaire / website,
+    attemptNumber: 1,                   // number of runs made by the user on the questionaire / website,
+    userSatisfaction1stRound: [],       // user satisfaction score 1-5 first time seeing their allocation,
+    userSatisfaction2ndRound: [],       // user satisfaction score 1-5 & fairness (angry-neutral-happy) 
+                                        // after seeing eveyone else's allocation,
+    algorithmRoundResponseData: [],     // the data recieved and stored in the website, withstanding browser refresh,
 }
 
 function createLocalStorage(key) {
