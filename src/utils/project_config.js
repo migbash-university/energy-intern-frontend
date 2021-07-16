@@ -7,8 +7,8 @@ export const project_config = [
         agentSlotsMin: 1, // min. agents to be selected before proceeding,
         agentSlotsMax: 1, // max. agents to be selected by the user,
 
-        attempts: 10, // amount of attempts a user needs to complete to `complete` the questionnaire,
+        attempts: 10, // amount of attempts a user needs to complete to `finish` the questionnaire and `exit`,
 
-        numberOfHouseholds: undefined, // number of `fake-users` agents displaying the everyone-else's allocation page view,
+        numberOfHouseholds: undefined, // number of `fake-users` agents displaying in the `everyone-else's allocation page view`,
     }
 ]
