@@ -25,7 +25,7 @@ COMPONENT SCRIPT
      * NaN
     */
     $: {
-        if ($selectedTimeSlots.selectedTimeSlots.includes(time_data.time)) {
+        if (verifyTimeExistance($selectedTimeSlots.selectedTimeSlots)) {
             selected = true;
         }
     }
@@ -41,17 +41,33 @@ COMPONENT SCRIPT
      * NaN
     */
     function selectTimeSlot() {
-        if ($selectedTimeSlots.selectedTimeSlots.length < project_config[0].timeSlotsMax && !$selectedTimeSlots.selectedTimeSlots.includes(time_data.time) ) {
+        if ($selectedTimeSlots.selectedTimeSlots.length < project_config[0].timeSlotsMax && !verifyTimeExistance($selectedTimeSlots.selectedTimeSlots)) {
             selected = !selected;
             //TODO: Add the ability to select and add a new userTimeSlot selction to the userObject Selection;
-            selectedTimeSlots.setSelectedTimeSlots(time_data.time);
+            selectedTimeSlots.setSelectedTimeSlots(time_data);
         } else if (selected == true) {
             selected = !selected;
             // TODO: Unselect from the localStorage & svelteJs Store;
-            selectedTimeSlots.removeSelectedTimeSlot(time_data.time);
+            selectedTimeSlots.removeSelectedTimeSlot(time_data);
         } else {
             alert("You have already selected the maximum slots allowed.")
         }
+    }
+
+    /**
+     * Fuction | Method
+     * ---
+     * Desc:
+     * Checks whether the .localStorage data contains
+     * the correct timeslot
+     * https://stackoverflow.com/questions/51603456/array-includes-to-find-object-in-array
+     * ---
+     * Return:
+     * Boolean
+    */
+    function verifyTimeExistance(arrOfObj) {
+        var isObjPresent = arrOfObj.some(item => item.time === time_data.time)
+        return isObjPresent
     }
 </script>
 

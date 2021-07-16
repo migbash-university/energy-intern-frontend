@@ -4,7 +4,11 @@ export const project_config = [
         timeSlotsMax: 2,  // maximum timeslots that can be selected by a user,
         // numberOfCardsPerSlide: 6 // amount wanted for there to be TimeSlotCards to be displayed on the carousel,
         
-        agentSlotsMin: 1,
-        agentSlotsMax: 1,
+        agentSlotsMin: 1, // min. agents to be selected before proceeding,
+        agentSlotsMax: 1, // max. agents to be selected by the user,
+
+        attempts: 10, // amount of attempts a user needs to complete to `complete` the questionnaire,
+
+        numberOfHouseholds: undefined, // number of `fake-users` agents displaying the everyone-else's allocation page view,
     }
 ]

@@ -25,7 +25,7 @@ COMPONENT SCRIPT
      * NaN
     */
     $: {
-        if ($selectedTimeSlots.selectedAgent.includes(agent_type.name)) {
+        if (verifyTimeExistance($selectedTimeSlots.selectedAgent)) {
             selected = true;
         }
     }
@@ -41,17 +41,33 @@ COMPONENT SCRIPT
      * NaN
     */
     function selectAgentSlot() {
-        if ($selectedTimeSlots.selectedAgent.length < project_config[0].agentSlotsMax && !$selectedTimeSlots.selectedAgent.includes(agent_type.name) ) {
+        if ($selectedTimeSlots.selectedAgent.length < project_config[0].agentSlotsMax && !verifyTimeExistance($selectedTimeSlots.selectedAgent)) {
             selected = !selected;
             //TODO: Add the ability to select and add a new userTimeSlot selction to the userObject Selection;
-            selectedTimeSlots.setSelectedAgentSlots(agent_type.name);
+            selectedTimeSlots.setSelectedAgentSlots(agent_type);
         } else if (selected == true) {
             selected = !selected;
             // TODO: Unselect from the localStorage & svelteJs Store;
-            selectedTimeSlots.removeSelectedAgentSlot(agent_type.name);
+            selectedTimeSlots.removeSelectedAgentSlot(agent_type);
         } else {
             alert("You have already selected the maximum slots allowed.")
         }
+    }
+
+    /**
+     * Fuction | Method
+     * ---
+     * Desc:
+     * Checks whether the .localStorage data contains
+     * the correct timeslot
+     * https://stackoverflow.com/questions/51603456/array-includes-to-find-object-in-array
+     * ---
+     * Return:
+     * Boolean
+    */
+    function verifyTimeExistance(arrOfObj) {
+        var isObjPresent = arrOfObj.some(item => item.name === agent_type.name)
+        return isObjPresent
     }
 </script>
 

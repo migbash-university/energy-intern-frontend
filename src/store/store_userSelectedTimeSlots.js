@@ -6,7 +6,8 @@ const userObjectOptions = {
     pastUserOptionsSelect: {    // past user selected Options in the Previous Run of Answers,
         pastSelectedTimeSlots: [],
         selectedAgent: undefined,   
-    }
+    },
+    attemptNumber: 1,           // number of runs made by the user on the questionaire / website,
 }
 
 function createLocalStorage(key) {
@@ -28,9 +29,9 @@ function createLocalStorage(key) {
          * NaN
          * @param {*} timeSlot_Value 
         */
-        removeSelectedTimeSlot: (timeSlot_Value) => {
+        removeSelectedTimeSlot: (timeSlot_Obj) => {
             // will return ['A', 'C']
-            let new_array = userObjectOptions.selectedTimeSlots.filter(e => e !== timeSlot_Value); 
+            let new_array = userObjectOptions.selectedTimeSlots.filter(({ time }) => time !== timeSlot_Obj.time);        
             console.log(new_array);
 
             userObjectOptions.selectedTimeSlots = new_array
@@ -52,9 +53,9 @@ function createLocalStorage(key) {
          * NaN
          * @param {*} timeSlot_Value 
         */
-        setSelectedTimeSlots: (timeSlot_Value) => {
+        setSelectedTimeSlots: (timeSlot_Obj) => {
             // Add new data to .localStorage() Array,
-            userObjectOptions.selectedTimeSlots.push(timeSlot_Value);
+            userObjectOptions.selectedTimeSlots.push(timeSlot_Obj);
             console.log(userObjectOptions);
 
             // Save back to localStorage,
@@ -75,9 +76,9 @@ function createLocalStorage(key) {
          * NaN
          * @param {*} timeSlot_Value 
         */
-        removeSelectedAgentSlot: (agentSlot_value) => {
+        removeSelectedAgentSlot: (agentSlot_Obj) => {
             // will return ['A', 'C']
-            let new_array = userObjectOptions.selectedAgent.filter(e => e !== agentSlot_value); 
+            let new_array = userObjectOptions.selectedAgent.filter(({ name }) => name !== agentSlot_Obj.name);
             console.log(new_array);
 
             userObjectOptions.selectedAgent = new_array
@@ -99,10 +100,54 @@ function createLocalStorage(key) {
          * NaN
          * @param {*} timeSlot_Value 
         */
-        setSelectedAgentSlots: (agentSlot_value) => {
+        setSelectedAgentSlots: (agentSlot_Obj) => {
             // Add new data to .localStorage() Array,
-            userObjectOptions.selectedAgent.push(agentSlot_value);
+            userObjectOptions.selectedAgent.push(agentSlot_Obj);
             console.log(userObjectOptions);
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set the user an attempt number for the runs made for
+         * each trial of questions
+         * ---
+         * Returns:
+         * NaN
+         * @param {*} attemptNumber 
+        */
+        incrementAttemptNumber: () => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.attemptNumber += 1
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set the user an attempt number for the runs made for
+         * each trial of questions
+         * ---
+         * Returns:
+         * NaN
+         * @param {*} attemptNumber 
+        */
+        resetAttemptNumber: () => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.attemptNumber = 0
 
             // Save back to localStorage,
             localStorage.setItem(key, JSON.stringify(userObjectOptions));
@@ -133,6 +178,9 @@ function createLocalStorage(key) {
 
             userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
             userObjectOptions.selectedAgent = existing.selectedAgent
+            userObjectOptions.attemptNumber = existing.attemptNumber
+
+            console.log('store-values: ', userObjectOptions.selectedTimeSlots, userObjectOptions.selectedAgent)
             
             // add the .localStorage() data to the svelteJs store for enabling of the reactiviy,
             set(existing);
