@@ -1,3 +1,13 @@
+/**
+ * Stores the different types of 
+ * time-slots in the website project,
+ * avaialble for the user to choose from
+ * ====
+ * X amount (indefinte) of further timeslots
+ * can be added to this file, as the page for selecting
+ * timeslots is highly dynamic and it STEMS from this
+ * file.
+*/
 export const time_slot_data = [
     {
         'time': `00:00 AM \n to \n 01:00 AM`,
