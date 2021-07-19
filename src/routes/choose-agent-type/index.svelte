@@ -8,9 +8,9 @@ COMPONENT JS
 <script>
     import { agentType_data } from '../../store/agentType_data.js';
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
-    import { project_config } from '../../utils/project_config.js'
+    import { project_config } from '../../utils/project_config.js';
 
-    import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
+    import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte'
 
     // Validation Function for the proceeding of the sequence of checkpoints,
     let proceed = true;
