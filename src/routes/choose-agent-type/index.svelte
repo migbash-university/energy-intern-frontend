@@ -49,7 +49,7 @@ COMPONENT HTML
 <!-- page-section-card-grid -->
 <div id='grid-agent-select-container'>
     {#each agentType_data as agentItem}
-        <AgentSlotCard agent_type={ agentItem } />
+        <!-- <AgentSlotCard agent_type={ agentItem } /> -->
     {/each}
 </div>
 
