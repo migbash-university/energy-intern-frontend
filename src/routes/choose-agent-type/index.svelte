@@ -10,7 +10,7 @@ COMPONENT JS
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
     import { project_config } from '../../utils/project_config.js'
 
-    // import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
+    import AgentSlotCard from '../../components/Containers/_AgentSlotCard.svelte';
 
     // Validation Function for the proceeding of the sequence of checkpoints,
     let proceed = true;
@@ -49,7 +49,7 @@ COMPONENT HTML
 <!-- page-section-card-grid -->
 <div id='grid-agent-select-container'>
     {#each agentType_data as agentItem}
-        <!-- <AgentSlotCard agent_type={ agentItem } /> -->
+        <AgentSlotCard agent_type={ agentItem } />
     {/each}
 </div>
 
