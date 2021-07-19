@@ -8,8 +8,13 @@ const userObjectOptions = {
         selectedAgent: [],   
     },
     attemptNumber: 1,                   // counter - runs made by the user on the questionaire / website,
-    userSatisfaction1stRound: [],       // user satisfaction score 1-5 first time seeing their allocation,
-    userSatisfaction2ndRound: [],       // user satisfaction score 1-5 & fairness (angry-neutral-happy) 
+    userSatisfaction1stRound: {
+        fairness: undefined,
+    }, // user satisfaction score 1-5 first time seeing their allocation,
+    userSatisfaction2ndRound: {
+        satisfaction: undefined,
+        fairness: undefined,
+    }, // user satisfaction score 1-5 & fairness (angry-neutral-happy) 
                                         // after seeing eveyone else's allocation,
     algorithmRoundResponseData: [],     // the data recieved and stored in the website, withstanding browser refresh,
 }
