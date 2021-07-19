@@ -2,6 +2,9 @@
   "name": "ai-energy-algorithm-web-interface",
   "description": "A Web Interface for the Energy AI Algorithm",
   "version": "1.5.0",
+  "engines": {
+    "node": "14.10.1"
+  },
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build",
