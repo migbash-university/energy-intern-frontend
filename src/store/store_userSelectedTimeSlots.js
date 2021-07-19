@@ -188,6 +188,10 @@ function createLocalStorage(key) {
             userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
             userObjectOptions.selectedAgent = existing.selectedAgent
             userObjectOptions.attemptNumber = existing.attemptNumber
+            userObjectOptions.pastUserOptionsSelect = existing.pastUserOptionsSelect
+            userObjectOptions.userSatisfaction1stRound = existing.userSatisfaction1stRound
+            userObjectOptions.userSatisfaction2ndRound = existing.userSatisfaction2ndRound
+            userObjectOptions.algorithmRoundResponseData = existing.algorithmRoundResponseData
 
             console.log('store-values: ', userObjectOptions.selectedTimeSlots, userObjectOptions.selectedAgent)
             
