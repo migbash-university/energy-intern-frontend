@@ -176,9 +176,9 @@ COMPONENT CSS
 -->
 
 <style>
-    #page-section {
+    /* #page-section {
         display: grid;
-    }
+    } */
 
     /* 
     actual rating-fair-selection */
