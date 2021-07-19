@@ -5,6 +5,7 @@ COMPONENT SCRIPT
 -->
 
 <script>
+	import { post } from '../../utils/fetch.js';
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
     // Data from the other API
@@ -16,6 +17,32 @@ COMPONENT SCRIPT
     */
     function updateAttemptNumber() {
         selectedTimeSlots.incrementAttemptNumber();
+        storeData();
+    }
+
+    /**
+     * Gets the `.localStorage()` data for `this` attempt / round,
+     * and stores the data into the .csv file,
+    */
+    async function storeData() {
+        let dataObj = $selectedTimeSlots;
+        console.log('data-send', dataObj);
+		return await post(`data/storeData`, dataObj);
+    }
+
+    /**
+     * Store the Satisfaction Score in LocalStorage();
+    */
+    async function satisfactionStore(satisfactionScore) {
+        $selectedTimeSlots.userSatisfaction2ndRound.satisfaction = satisfactionScore;
+    }
+
+    /**
+     * Store the Fairness Score in LocalStorage();
+    */
+    async function fairnessStore(fairnessScore) {
+        $selectedTimeSlots.userSatisfaction2ndRound.fairness = fairnessScore;
+        selectedRating = fairnessScore;
     }
 </script>
 
@@ -50,7 +77,7 @@ COMPONENT HTML
         <g id="page-section-how-fair-values_svg__5-rating-frame"
             class='ratingBox'
             class:selectedRatingStyle={selectedRating === 5}
-            on:click={() => selectedRating = 5}
+            on:click={() => fairnessStore(5)}
             >
             <circle id="page-section-how-fair-values_svg__Ellipse_16" cx="492" cy="87" r="32.5" fill="#fff"
                 stroke="#000" />
@@ -62,7 +89,7 @@ COMPONENT HTML
         <g id="page-section-how-fair-values_svg__4-rating-frame"
             class='ratingBox'
             class:selectedRatingStyle={selectedRating === 4}
-            on:click={() => selectedRating = 4}
+            on:click={() => fairnessStore(4)}
             >
             <circle id="page-section-how-fair-values_svg__Ellipse_16_2" cx="407" cy="87" r="32.5" fill="#fff"
                 stroke="#000" />
@@ -74,7 +101,7 @@ COMPONENT HTML
         <g id="page-section-how-fair-values_svg__3-rating-frame"
             class='ratingBox'
             class:selectedRatingStyle={selectedRating === 3}
-            on:click={() => selectedRating = 3}
+            on:click={() => fairnessStore(3)}
             >
             <circle id="page-section-how-fair-values_svg__Ellipse_16_3" cx="322" cy="87" r="32.5" fill="#fff"
                 stroke="#000" />
@@ -86,7 +113,7 @@ COMPONENT HTML
         <g id="page-section-how-fair-values_svg__2-rating-frame"
             class='ratingBox'
             class:selectedRatingStyle={selectedRating === 2}
-            on:click={() => selectedRating = 2}
+            on:click={() => fairnessStore(2)}
             >
             <circle id="page-section-how-fair-values_svg__Ellipse_16_4" cx="237" cy="87" r="32.5" fill="#fff"
                 stroke="#000" />
@@ -98,7 +125,7 @@ COMPONENT HTML
         <g id="page-section-how-fair-values_svg__1-rating-frame"
             class='ratingBox'
             class:selectedRatingStyle={selectedRating === 1}
-            on:click={() => selectedRating = 1}
+            on:click={() => fairnessStore(1)}
             >
             <circle id="page-section-how-fair-values_svg__Ellipse_16_5" cx="152" cy="87" r="32.5" fill="#fff"
                 stroke="#000" />
@@ -124,6 +151,7 @@ COMPONENT HTML
         further-rating-system -->
         <g id="page-section-how-fair-values_svg__happy-sun-mask-group"
             class='sun-icons'
+            on:click={() => satisfactionStore('happy')}
             >
             <mask id="page-section-how-fair-values_svg__mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="14"
                 y="272" width="105" height="84">
@@ -138,6 +166,7 @@ COMPONENT HTML
         </g>
         <g id="page-section-how-fair-values_svg__angry-sun-mask-group"
             class='sun-icons'
+            on:click={() => satisfactionStore('angry')}
             >
             <mask id="page-section-how-fair-values_svg__mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="138"
                 y="272" width="105" height="84">
@@ -150,7 +179,10 @@ COMPONENT HTML
                     fill="url(#page-section-how-fair-values_svg__pattern1)" d="M133.5 254.5h119v119h-119z" />
             </g>
         </g>
-        <g id="page-section-how-fair-values_svg__netural-sun-mask-group">
+        <g id="page-section-how-fair-values_svg__netural-sun-mask-group"
+            class='sun-icons'
+            on:click={() => satisfactionStore('neutral')}
+            >
             <mask id="page-section-how-fair-values_svg__mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="262"
                 y="272" width="105" height="84">
                 <path id="page-section-how-fair-values_svg__Vector_5"
@@ -207,7 +239,7 @@ COMPONENT HTML
 <div class='sequence-continuation-container'>
     {#if $selectedTimeSlots.attemptNumber != 10}
          <!-- content here -->
-         <a  rel='prefetch' 
+        <a  rel='prefetch' 
             href="/choose-preferred-time-slots"
             on:click={() => updateAttemptNumber()}
         >
@@ -216,7 +248,6 @@ COMPONENT HTML
     {:else}
         <button style='background-color: #60CF70; color: white; font-weight: bold;'>Finish</button>
     {/if}
-    
 </div>
 
 <!--
@@ -228,7 +259,6 @@ COMPONENT CSS
 -->
 
 <style>
-
     .ratingBox {
         cursor: pointer;
         transition: all 0.3s ease-in-out;
@@ -254,5 +284,4 @@ COMPONENT CSS
         display: flex;
         justify-content: space-between;
     }
-
 </style>
