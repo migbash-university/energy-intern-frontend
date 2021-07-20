@@ -1,0 +1,5 @@
+attempt,timeSlot_0,timeSlot_1,satisfactionScore_2,fairnessScore_2,satisfactionScore_1
+2,04:00 AM   to   05:00 AM,02:00 AM   to   03:00 AM,happy,5,42,04:00 AM   to   05:00 AM,02:00 AM   to   03:00 AM,happy,5,4
+2,01:00 AM   to   02:00 AM,04:00 AM   to   05:00 AM,neutral,2,5
+3,05:00 AM   to   06:00 AM,16:00 PM   to   17:00 PM,angry,1,2
+2,01:00 AM   to   02:00 AM,04:00 AM   to   05:00 AM,neutral,2,5

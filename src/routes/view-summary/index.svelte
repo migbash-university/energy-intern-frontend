@@ -48,13 +48,12 @@ svg (vector-graphic-page); -->
                 <g id="page-section-selected-options-view_svg__5:00_PM_to_6:00_PM" font-family="Exo 2" font-size="15.415"
                     font-weight="bold" letter-spacing="0em">
                     <text fill="#fff" xml:space="preserve" style="white-space:pre">
-                        <tspan x="81.871" y="165.597"> { firstTimeSlot.time } </tspan>
-                        <!-- <tspan x="83.256" y="201.597">6:00 PM</tspan> -->
+                        <tspan x="81.871" y="165.597"> { firstTimeSlot.time.split(' ')[0] + ' ' + firstTimeSlot.time.split(' ')[1] } </tspan>
+                        <tspan x="83.256" y="201.597"> { firstTimeSlot.time.split(' ')[5] + ' '  + firstTimeSlot.time.split(' ')[6] } </tspan>
                     </text>
-                    <!-- <text fill="#000" xml:space="preserve" style="white-space:pre">
-                        <tspan x="105.212" y="183.597">to
-                        </tspan>
-                    </text> -->
+                    <text fill="#000" xml:space="preserve" style="white-space:pre">
+                        <tspan x="105.212" y="183.597"> to </tspan>
+                    </text>
                 </g>
             </g>
             <g id="page-section-selected-options-view_svg__time-slot_2">
@@ -65,13 +64,12 @@ svg (vector-graphic-page); -->
                 <g id="page-section-selected-options-view_svg__5:00_PM_to_6:00_PM_2" font-family="Exo 2" font-size="15.415"
                     font-weight="bold" letter-spacing="0em">
                     <text fill="#fff" xml:space="preserve" style="white-space:pre">
-                        <tspan x="81.871" y="254.597"> { secondTimeSlot.time } </tspan>
-                        <!-- <tspan x="83.256" y="290.597">6:00 PM</tspan> -->
+                        <tspan x="81.871" y="254.597"> { secondTimeSlot.time.split(' ')[0] + ' ' + secondTimeSlot.time.split(' ')[1] } </tspan>
+                        <tspan x="83.256" y="290.597"> { secondTimeSlot.time.split(' ')[5] + ' ' + secondTimeSlot.time.split(' ')[6] } </tspan>
                     </text>
-                    <!-- <text fill="#000" xml:space="preserve" style="white-space:pre">
-                        <tspan x="105.212" y="272.597">to
-                        </tspan>
-                    </text> -->
+                    <text fill="#000" xml:space="preserve" style="white-space:pre">
+                        <tspan x="105.212" y="272.597"> to </tspan>
+                    </text>
                 </g>
             </g>
             <g id="page-section-selected-options-view_svg__agent-option-frame">
