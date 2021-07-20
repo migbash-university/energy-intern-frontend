@@ -9,16 +9,17 @@ COMPONENT SCRIPT
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
     // Data from the other API
-    let selectedRating = undefined; 
+    let selectedRating = $selectedTimeSlots.userSatisfaction2ndRound.fairness; 
 
     /**
      * Updates the attempt Number made by the user,
      * @param selectedOption
     */
-    function updateAttemptNumber() {
-        selectedTimeSlots.incrementAttemptNumber();
-        storeData();
-    }
+    async function updateAttemptNumber() {
+        storeData().then(
+            selectedTimeSlots.incrementAttemptNumber()
+        )
+    }   
 
     /**
      * Gets the `.localStorage()` data for `this` attempt / round,
@@ -26,7 +27,7 @@ COMPONENT SCRIPT
     */
     async function storeData() {
         let dataObj = $selectedTimeSlots;
-        console.log('data-send', dataObj);
+        // console.log('data-send', dataObj);
 		return await post(`data/storeData`, dataObj);
     }
 
@@ -34,14 +35,14 @@ COMPONENT SCRIPT
      * Store the Satisfaction Score in LocalStorage();
     */
     async function satisfactionStore(satisfactionScore) {
-        $selectedTimeSlots.userSatisfaction2ndRound.satisfaction = satisfactionScore;
+        selectedTimeSlots.setUser2ndScore('satisfaction', satisfactionScore)
     }
 
     /**
      * Store the Fairness Score in LocalStorage();
     */
     async function fairnessStore(fairnessScore) {
-        $selectedTimeSlots.userSatisfaction2ndRound.fairness = fairnessScore;
+        selectedTimeSlots.setUser2ndScore('fairness', fairnessScore)
         selectedRating = fairnessScore;
     }
 </script>

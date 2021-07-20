@@ -8,13 +8,13 @@ COMPONENT SCRIPT
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
     // data from the Algorithm for the website;
-    let selectedRating = undefined;
+    let selectedRating = $selectedTimeSlots.userSatisfaction1stRound.fairness; 
 
     /**
      * Store the Fairness Score in LocalStorage();
     */
     async function fairnessStore(fairnessScore) {
-        $selectedTimeSlots.userSatisfaction1stRound.fairness = fairnessScore;
+        selectedTimeSlots.setUser1stScore('fairness', fairnessScore)
         selectedRating = fairnessScore;
     }
 </script>

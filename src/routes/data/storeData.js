@@ -22,10 +22,11 @@ export function post(req, res) {
   const data = req.body;
   // console.log('storeData.js', req.body);
 
+  const userUID = data.userUID
   const formData = reformatJSONObj(data);
 
   let json2csvCallback;
-  let path = 'name.csv'
+  let path = 'data/' + userUID + '.csv'
 
   if (fs.existsSync(path)) {
     // convert JSON to CSV format,
@@ -84,12 +85,13 @@ function reformatJSONObj(dataObj) {
   };
   // console.log('objStateView', newObj);
   newObj = {
+    attempt: dataObj.attemptNumber,
     ...newObj,
+    fairnessScore_1: dataObj.userSatisfaction1stRound.fairness,
     satisfactionScore_2: dataObj.userSatisfaction2ndRound.satisfaction,
     fairnessScore_2: dataObj.userSatisfaction2ndRound.fairness,
-    satisfactionScore_1: dataObj.userSatisfaction1stRound.fairness,
-    // timeSlotAllocated: undefined,
-    // percentageAllocated: undefined,
-  }
+    // timeSlotsAllocated: undefined, TODO:
+    // percentageCorrectlyAllocated: undefined, TODO:
+  };
   return newObj;
 }

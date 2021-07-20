@@ -1,13 +1,14 @@
 import { writable } from 'svelte/store';
 
 const userObjectOptions = {
+    userUID: undefined,                 // user UID to keep track of thier responses,
+    attemptNumber: 1,                   // counter - runs made by the user on the questionaire / website,
     selectedTimeSlots: [],              // user selected cards for the timeslots,
     selectedAgent: [],                  // single agent option,
     pastUserOptionsSelect: {            // past user selected Options in the Previous Run of Answers,
         pastSelectedTimeSlots: [],
         selectedAgent: [],   
     },
-    attemptNumber: 1,                   // counter - runs made by the user on the questionaire / website,
     userSatisfaction1stRound: {
         fairness: undefined,
     }, // user satisfaction score 1-5 first time seeing their allocation,
@@ -52,6 +53,7 @@ function createLocalStorage(key) {
             set(userObjectOptions);
         },
 
+        
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
@@ -73,6 +75,7 @@ function createLocalStorage(key) {
             // set the new value as the new SvelteJs Store Object for Reactivity,
             set(userObjectOptions);
         },
+
 
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
@@ -99,6 +102,7 @@ function createLocalStorage(key) {
             set(userObjectOptions);
         },
 
+
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
@@ -120,6 +124,7 @@ function createLocalStorage(key) {
             // set the new value as the new SvelteJs Store Object for Reactivity,
             set(userObjectOptions);
         },
+
 
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
@@ -143,6 +148,7 @@ function createLocalStorage(key) {
             set(userObjectOptions);
         },
 
+
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
@@ -165,6 +171,51 @@ function createLocalStorage(key) {
             set(userObjectOptions);
         },
 
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set the satisfaction score for the user and
+         * store it in the .localStorage() appropiately
+         * ---
+         * Returns:
+         * NaN
+        */
+        setUser1stScore: (stringScore, scoreInt) => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.userSatisfaction1stRound[stringScore] = scoreInt
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set the satisfaction score for the user and
+         * store it in the .localStorage() appropiately
+         * ---
+         * Returns:
+         * NaN
+        */
+        setUser2ndScore: (stringScore, scoreInt) => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.userSatisfaction2ndRound[stringScore] = scoreInt
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
@@ -179,12 +230,17 @@ function createLocalStorage(key) {
             // Get the existing data
             // reset the writable to the localStorage if localStorage already exists,
             var existing = localStorage.getItem(key);
-            console.log(existing); // testing, - "user-object"
+            console.log('userLocalStorage data -', existing); // testing, - "user-object"
 
             // If no existing data, create an array
             // Otherwise, convert the localStorage string to an array
             existing = existing ? JSON.parse(existing) : userObjectOptions;
 
+            if (existing.userUID == undefined) {
+                userObjectOptions.userUID = Math.floor(100000 + Math.random() * 900000)
+            } else {
+                userObjectOptions.userUID = existing.userUID
+            }
             userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
             userObjectOptions.selectedAgent = existing.selectedAgent
             userObjectOptions.attemptNumber = existing.attemptNumber
@@ -193,11 +249,11 @@ function createLocalStorage(key) {
             userObjectOptions.userSatisfaction2ndRound = existing.userSatisfaction2ndRound
             userObjectOptions.algorithmRoundResponseData = existing.algorithmRoundResponseData
 
-            console.log('store-values: ', userObjectOptions.selectedTimeSlots, userObjectOptions.selectedAgent)
+            // console.log('store-values: ', userObjectOptions.selectedTimeSlots, userObjectOptions.selectedAgent)
             
             // add the .localStorage() data to the svelteJs store for enabling of the reactiviy,
             set(existing);
-        }
+        },
     }
 }
 
