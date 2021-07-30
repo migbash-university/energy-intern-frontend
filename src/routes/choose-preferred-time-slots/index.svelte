@@ -42,13 +42,18 @@ COMPONENT SCRIPT
 
         if (val_change == 6) {
             slideNum++;
-        } else {
+        } 
+        if (val_change == -6 && slideNum != -1) {
             slideNum--;
+        } 
+        if (val_change == -6 && slideNum == -1) {
+            slide_a = 18
+            slide_b = 24
+            slideNum = 3
         }
-
         // check if the limit of the time slots sliders has been exceded,
         // then reset the slider back to it's intial state,
-        if (slide_a == 24 || slide_a == -24) {
+        if (slide_a == 24) {
             slide_a = 0
             slide_b = 6
             slideNum = 0

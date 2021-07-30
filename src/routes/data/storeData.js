@@ -46,8 +46,8 @@ export function post(req, res) {
   } else {
     json2csvCallback = function (err, csv) {
       if (err) throw err;
-       // else: create & write to new file, 
-       fs.writeFile(path, csv, 'utf8', function (err) {
+      // else: create & write to new file, 
+      fs.writeFile(path, csv, 'utf8', function (err) {
         if (err) {
           console.log('Some error occured - file either not saved or corrupted file saved.');
         } else {
@@ -74,24 +74,50 @@ export function post(req, res) {
  */
 function reformatJSONObj(dataObj) {
   delete dataObj.pastUserOptionsSelect;
+
   var newObj = {};
+
+  console.log('checkpointObject_1', dataObj.selectedTimeSlots);
+  
+  /**
+   * Dealing with `selectedTimeSlots` 
+  */
   let timeslotArray = dataObj.selectedTimeSlots;
   let timeSlotCounter = 0;
   for (let element of timeslotArray) {
     // console.log('element-time', element.time);
     let str = element.time.replace(/\r?\n|\r/g, " ");
-    newObj['timeSlot_' + timeSlotCounter] = str;
+    newObj['selectedTimeSlot_' + timeSlotCounter] = str;
     timeSlotCounter++;
   };
-  // console.log('objStateView', newObj);
+
+  // console.log('checkpointObject_1', newObj);
+
+  /**
+   * Dealing with `AllocatedTimeSlots` 
+  */
+  let timeslotArray_2 = dataObj.algorithmRoundResponseData.userData.allocatedTimeSlots;
+  let timeSlotCounter_2 = 0;
+  for (let element of timeslotArray_2) {
+    // console.log('element-time', element.time);
+    let str = element.time.replace(/\r?\n|\r/g, " ");
+    newObj['allocatedTimeSlot_' + timeSlotCounter_2] = str;
+    timeSlotCounter_2++;
+  };
+
+  // console.log('checkpointObject_2', newObj);
+
+  /**
+   * Piece the final Data Together;
+  */
   newObj = {
     attempt: dataObj.attemptNumber,
     ...newObj,
     fairnessScore_1: dataObj.userSatisfaction1stRound.fairness,
     satisfactionScore_2: dataObj.userSatisfaction2ndRound.satisfaction,
     fairnessScore_2: dataObj.userSatisfaction2ndRound.fairness,
-    // timeSlotsAllocated: undefined, TODO:
-    // percentageCorrectlyAllocated: undefined, TODO:
+    percentageCorrectlyAllocated: dataObj.percentageTimeSlotsSatisfied,
   };
+
   return newObj;
 }

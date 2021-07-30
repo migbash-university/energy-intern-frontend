@@ -58,8 +58,9 @@ COMPONENT SCRIPT
      * Fuction | Method
      * ---
      * Desc:
-     * Checks whether the .localStorage data contains
-     * the correct timeslot
+     * Checks whether the .localStorage() data contains
+     * the correct timeslot, by doing a check against 
+     * an Array of Objects,
      * https://stackoverflow.com/questions/51603456/array-includes-to-find-object-in-array
      * ---
      * Return:

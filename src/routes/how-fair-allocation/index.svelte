@@ -16,8 +16,9 @@ COMPONENT SCRIPT
      * @param selectedOption
     */
     async function updateAttemptNumber() {
-        storeData().then(
-            selectedTimeSlots.incrementAttemptNumber()
+        storeData().then(() => {
+            selectedTimeSlots.incrementAttemptNumber();
+            }
         )
     }   
 

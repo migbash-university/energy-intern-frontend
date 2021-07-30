@@ -1,24 +1,41 @@
 import { writable } from 'svelte/store';
 
 const userObjectOptions = {
-    userUID: undefined,                 // user UID to keep track of thier responses,
-    attemptNumber: 1,                   // counter - runs made by the user on the questionaire / website,
-    selectedTimeSlots: [],              // user selected cards for the timeslots,
-    selectedAgent: [],                  // single agent option,
-    pastUserOptionsSelect: {            // past user selected Options in the Previous Run of Answers,
+    userUID: undefined,                    // user UID to keep track of thier responses,
+    // attemptProgressCheckpoint: undefined,  // keeps track of the users progress to that can only 
+    attemptNumber: 1,                      // counter - runs made by the user on the questionaire / website,
+    selectedTimeSlots: [],                 // user selected cards for the timeslots,
+    selectedAgent: [],                     // single agent option,
+    pastUserOptionsSelect: {               // past user selected Options in the Previous Run of Answers,
         pastSelectedTimeSlots: [],
         selectedAgent: [],   
     },
-    userSatisfaction1stRound: {
+    userSatisfaction1stRound: {            // user satisfaction score 1-5 first time seeing their allocation,
         fairness: undefined,
-    }, // user satisfaction score 1-5 first time seeing their allocation,
-    userSatisfaction2ndRound: {
+    },
+    userSatisfaction2ndRound: {            // user satisfaction score 1-5 & fairness (angry-neutral-happy) after seeing eveyone else's allocation,
         satisfaction: undefined,
         fairness: undefined,
-    }, // user satisfaction score 1-5 & fairness (angry-neutral-happy) 
-                                        // after seeing eveyone else's allocation,
-    algorithmRoundResponseData: [],     // the data recieved and stored in the website, withstanding browser refresh,
-}
+    },
+    algorithmRoundResponseData: {          // the data recieved and stored in the website, withstanding browser refresh,
+        /**
+         * REST-API Backend Data 
+         * Inteface Example Outline 
+        */
+        percentageTimeSlotsSatisfied: undefined,
+        // user Data Response
+        userData : {
+            id: 'User',
+            selectedTimeSlots: [
+            ],
+            allocatedTimeSlots: [
+            ],
+        },
+        // array of household responses by the algorithm,
+        householdData: [
+        ]
+    },
+};
 
 function createLocalStorage(key) {
     const { subscribe, set, update } = writable(userObjectOptions);
@@ -37,7 +54,7 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} timeSlot_Value 
+         * @param {*} timeSlot_Obj 
         */
         removeSelectedTimeSlot: (timeSlot_Obj) => {
             // will return ['A', 'C']
@@ -62,7 +79,7 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} timeSlot_Value 
+         * @param {*} timeSlot_Obj 
         */
         setSelectedTimeSlots: (timeSlot_Obj) => {
             // Add new data to .localStorage() Array,
@@ -86,7 +103,7 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} timeSlot_Value 
+         * @param {*} agentSlot_Obj 
         */
         removeSelectedAgentSlot: (agentSlot_Obj) => {
             // will return ['A', 'C']
@@ -111,7 +128,7 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} timeSlot_Value 
+         * @param {*} agentSlot_Obj 
         */
         setSelectedAgentSlots: (agentSlot_Obj) => {
             // Add new data to .localStorage() Array,
@@ -135,7 +152,6 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} attemptNumber 
         */
         incrementAttemptNumber: () => {
             // Add new data to .localStorage() Array,
@@ -158,7 +174,6 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
-         * @param {*} attemptNumber 
         */
         resetAttemptNumber: () => {
             // Add new data to .localStorage() Array,
@@ -181,6 +196,8 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
+         * @param {*} stringScore 
+        *  @param {*} scoreInt 
         */
         setUser1stScore: (stringScore, scoreInt) => {
             // Add new data to .localStorage() Array,
@@ -203,10 +220,35 @@ function createLocalStorage(key) {
          * ---
          * Returns:
          * NaN
+         * @param {*} stringScore 
+         * @param {*} scoreInt 
         */
         setUser2ndScore: (stringScore, scoreInt) => {
             // Add new data to .localStorage() Array,
             userObjectOptions.userSatisfaction2ndRound[stringScore] = scoreInt
+
+            // Save back to localStorage,
+            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+
+            // set the new value as the new SvelteJs Store Object for Reactivity,
+            set(userObjectOptions);
+        },
+
+        
+        /**
+         * SvelteJs Store Function | Method, [WORKING ✅]
+         * ---
+         * Desc:
+         * Set the satisfaction score for the user and
+         * store it in the .localStorage() appropiately
+         * ---
+         * Returns:
+         * NaN
+         * @param {*} algorithmRoundResponseData 
+        */
+        setAlgorithmRoundResponseData: (algorithmRoundResponseData) => {
+            // Add new data to .localStorage() Array,
+            userObjectOptions.algorithmRoundResponseData = algorithmRoundResponseData
 
             // Save back to localStorage,
             localStorage.setItem(key, JSON.stringify(userObjectOptions));
@@ -230,7 +272,7 @@ function createLocalStorage(key) {
             // Get the existing data
             // reset the writable to the localStorage if localStorage already exists,
             var existing = localStorage.getItem(key);
-            console.log('userLocalStorage data -', existing); // testing, - "user-object"
+            // console.log('userLocalStorage data -', existing); // testing, - "user-object"
 
             // If no existing data, create an array
             // Otherwise, convert the localStorage string to an array
@@ -240,21 +282,21 @@ function createLocalStorage(key) {
                 userObjectOptions.userUID = Math.floor(100000 + Math.random() * 900000)
             } else {
                 userObjectOptions.userUID = existing.userUID
+                userObjectOptions.attemptNumber = existing.attemptNumber;
+                userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots;
+                userObjectOptions.selectedAgent = existing.selectedAgent;
+                userObjectOptions.pastUserOptionsSelect = existing.pastUserOptionsSelect;
+                userObjectOptions.userSatisfaction1stRound = existing.userSatisfaction1stRound;
+                userObjectOptions.userSatisfaction2ndRound = existing.userSatisfaction2ndRound;
+                userObjectOptions.algorithmRoundResponseData = existing.algorithmRoundResponseData;
             }
-            userObjectOptions.selectedTimeSlots = existing.selectedTimeSlots
-            userObjectOptions.selectedAgent = existing.selectedAgent
-            userObjectOptions.attemptNumber = existing.attemptNumber
-            userObjectOptions.pastUserOptionsSelect = existing.pastUserOptionsSelect
-            userObjectOptions.userSatisfaction1stRound = existing.userSatisfaction1stRound
-            userObjectOptions.userSatisfaction2ndRound = existing.userSatisfaction2ndRound
-            userObjectOptions.algorithmRoundResponseData = existing.algorithmRoundResponseData
-
             // console.log('store-values: ', userObjectOptions.selectedTimeSlots, userObjectOptions.selectedAgent)
             
             // add the .localStorage() data to the svelteJs store for enabling of the reactiviy,
-            set(existing);
+            set(userObjectOptions);
         },
     }
 }
 
+// declare the name of the .localStorage();
 export const selectedTimeSlots = createLocalStorage('website-ai-user-selected-options');

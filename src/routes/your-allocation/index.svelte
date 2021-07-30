@@ -1,3 +1,4 @@
+
 <!--
 =============
 COMPONENT SCRIPT 
@@ -5,9 +6,32 @@ COMPONENT SCRIPT
 -->
 
 <script>
+    import { post } from '../../api/utils.js';
+    import { onMount } from 'svelte';
+
+    /**
+     * Import the Svelte-Sapper Stores,
+     * to access the data-across Components and/or Pages 
+     * (Internal-Database)
+    */
     import { selectedTimeSlots } from '../../store/store_userSelectedTimeSlots.js';
 
-    // data from the Algorithm for the website;
+    /**
+     * Obtaining the data from the `pre-fetch` 
+     * & assigning it to the `Svelte-Sapper` Stores
+    */
+    // export let data;
+    let userData = { 
+        userSelectedTimeSlots: $selectedTimeSlots.selectedTimeSlots
+    }
+    
+    onMount(async() => {
+        console.log('userData Passed', userData);
+        const response = await post('http://192.168.0.10:8080/run_algorithm', userData);
+        console.log('response', response);
+        selectedTimeSlots.setAlgorithmRoundResponseData(response);
+    })
+
     let selectedRating = $selectedTimeSlots.userSatisfaction1stRound.fairness; 
 
     /**

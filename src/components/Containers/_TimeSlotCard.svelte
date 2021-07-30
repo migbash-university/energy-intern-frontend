@@ -92,27 +92,20 @@ COMPONENT HTML
 =============
 COMPONENT CSS
 =============
-- MOBILE FIRST DESIGN
-=============
 -->
 
 <style>
     .time-slot-card {
         max-width: 241px;
         height: 266px;
-
         cursor: pointer;
         text-align: center;
         text-align: -webkit-center;
-
         position: relative;
-
         overflow: hidden;
-
         background-color: #00AFEF;
         border-radius: 10px;
         transition: all ease 0.3s;
-
         display: grid;
         align-content: center;
     } .time-slot-card:hover {
