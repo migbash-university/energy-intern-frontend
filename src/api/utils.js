@@ -5,7 +5,7 @@ let base_url;
 if (process.env.NODE_ENV != 'production') {
 	base_url = 'http://192.168.0.10:8080/'
 } else {
-	base_url = 'https://netxplora.herokuapp.com/'
+	base_url = 'https://energy-web-intern-backend.herokuapp.com/'
 }
 
 // Function for Internal MiddleWare Post Request,
