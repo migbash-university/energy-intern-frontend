@@ -35,8 +35,10 @@ export function post(req, res) {
       fs.appendFile(path, csv + '\r\n', function (err) {
         if (err) {
           console.log('Some error occured - file either not saved or corrupted file saved.');
+          return
         } else {
           console.log('New data appened!');
+          return
         }
       });
     };
@@ -47,11 +49,13 @@ export function post(req, res) {
     json2csvCallback = function (err, csv) {
       if (err) throw err;
       // else: create & write to new file, 
-      fs.writeFile(path, csv, 'utf8', function (err) {
+      fs.writeFile(path, csv + '\r\n', 'utf8', function (err) {
         if (err) {
           console.log('Some error occured - file either not saved or corrupted file saved.');
+          return
         } else {
           console.log('It\'s saved!');
+          return
         }
       });
     }
@@ -77,7 +81,7 @@ function reformatJSONObj(dataObj) {
 
   var newObj = {};
 
-  console.log('checkpointObject_1', dataObj.selectedTimeSlots);
+  // console.log('checkpointObject_1', dataObj.selectedTimeSlots);
   
   /**
    * Dealing with `selectedTimeSlots` 
