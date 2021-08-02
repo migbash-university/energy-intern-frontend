@@ -45,6 +45,7 @@ function createLocalStorage(key) {
         set,
         update,
 
+        
         /**
          * SvelteJs Store Function | Method, [WORKING ✅]
          * ---
@@ -157,6 +158,17 @@ function createLocalStorage(key) {
             // Add new data to .localStorage() Array,
             userObjectOptions.attemptNumber += 1
 
+            // reset the user-parameters for a new round,
+            userObjectOptions.selectedTimeSlots = [];
+            userObjectOptions.selectedAgent = [];
+            userObjectOptions.userSatisfaction1stRound.fairness = undefined;
+            userObjectOptions.userSatisfaction2ndRound.fairness = undefined;
+            userObjectOptions.userSatisfaction2ndRound.satisfaction = undefined;
+            userObjectOptions.algorithmRoundResponseData.percentageTimeSlotsSatisfied = undefined;
+            userObjectOptions.algorithmRoundResponseData.userData.selectedTimeSlots = [];
+            userObjectOptions.algorithmRoundResponseData.userData.allocatedTimeSlots = [];
+            userObjectOptions.algorithmRoundResponseData.userData.householdData = [];
+
             // Save back to localStorage,
             localStorage.setItem(key, JSON.stringify(userObjectOptions));
 
@@ -175,15 +187,23 @@ function createLocalStorage(key) {
          * Returns:
          * NaN
         */
-        resetAttemptNumber: () => {
-            // Add new data to .localStorage() Array,
-            userObjectOptions.attemptNumber = 0
+        resetQuestionnaire: () => {
+            localStorage.clear();
 
-            // Save back to localStorage,
-            localStorage.setItem(key, JSON.stringify(userObjectOptions));
+            // reset the user-parameters for a new round,
+            userObjectOptions.userUID = Math.floor(100000 + Math.random() * 900000);
+            userObjectOptions.attemptNumber = 1;
+            userObjectOptions.selectedTimeSlots = [];
+            userObjectOptions.selectedAgent = [];
+            userObjectOptions.userSatisfaction1stRound.fairness = undefined;
+            userObjectOptions.userSatisfaction2ndRound.fairness = undefined;
+            userObjectOptions.userSatisfaction2ndRound.satisfaction = undefined;
+            userObjectOptions.algorithmRoundResponseData.percentageTimeSlotsSatisfied = undefined;
+            userObjectOptions.algorithmRoundResponseData.userData.selectedTimeSlots = [];
+            userObjectOptions.algorithmRoundResponseData.userData.allocatedTimeSlots = [];
+            userObjectOptions.algorithmRoundResponseData.userData.householdData = [];
 
-            // set the new value as the new SvelteJs Store Object for Reactivity,
-            set(userObjectOptions);
+            set(userObjectOptions)
         },
 
 
