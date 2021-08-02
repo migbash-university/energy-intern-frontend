@@ -33,7 +33,7 @@ COMPONENT SCRIPT
     
     onMount(async() => {
         console.log('userData Passed', userData);
-        const response = await post('http://192.168.0.10:8080/run_algorithm', userData);
+        const response = await post('/run_algorithm', userData);
         console.log('response', response);
         selectedTimeSlots.setAlgorithmRoundResponseData(response);
     })
